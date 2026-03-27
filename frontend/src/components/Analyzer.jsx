@@ -13,7 +13,7 @@ const ROLES = [
 const INDUSTRIES = ['Technology', 'Finance', 'Healthcare', 'E-commerce', 'Education', 'Media', 'Manufacturing'];
 
 const Analyzer = () => {
-  const { user } = useAuth();
+  const { } = useAuth();
   const [currentSkills, setCurrentSkills] = useState('');
   const [desiredRole, setDesiredRole] = useState('');
   const [industry, setIndustry] = useState('Technology');
@@ -49,7 +49,7 @@ const Analyzer = () => {
             analysis: response.data.analysis,
             learning_path: response.data.learning_path,
           })
-        }).catch(() => {}); // silent — don't block UI
+        }).catch(() => { }); // silent — don't block UI
       }
     } catch (err) {
       setError('Failed to analyze. Make sure the backend is running.');

@@ -31,9 +31,9 @@ const LndCoach = () => {
   useEffect(() => {
     if (messages.length === 0 && user) {
       const isReturning = localStorage.getItem(`lnd_returning_${user.id}`);
-      
+
       const greeting = `Hello ${user.full_name.split(' ')[0]}! Welcome to your HEXAPATH AI learning portal. I'm your dedicated L&D Assistant.`;
-      
+
       addMessage(greeting, 'bot');
 
       setTimeout(() => {
@@ -71,7 +71,7 @@ const LndCoach = () => {
       if (userData.profileStep === 'goal') {
         setUserData({ ...userData, goal: userText, profileStep: 'format' });
         addMessage(`Got it—focusing on ${userText}. What is your preferred learning format? (e.g., video, reading, live sessions, microlearning)`, 'bot');
-      } 
+      }
       else if (userData.profileStep === 'format') {
         setUserData({ ...userData, format: userText, profileStep: 'time' });
         addMessage(`Great! Finally, how many hours per week can you realistically dedicate to learning?`, 'bot');
@@ -79,7 +79,7 @@ const LndCoach = () => {
       else if (userData.profileStep === 'time') {
         setUserData({ ...userData, time: userText, profileStep: 'done' });
         localStorage.setItem(`lnd_returning_${user?.id}`, 'true'); // mark as returning for next time
-        
+
         addMessage(`Perfect. I've noted that you have ${userText} available primarily for ${userData.format}.`, 'bot');
         setTimeout(() => {
           addMessage(`Let's do a quick, role-relevant self-assessment. On a scale of 1-5, how confident are you in designing scalable software architectures?`, 'bot');
@@ -88,12 +88,12 @@ const LndCoach = () => {
         }, 1500);
       }
     }
-    
+
     // --- STAGE 3: ASSESSMENT ---
     else if (stage === 3) {
       const step = userData.assessmentStep;
       const scores = [...userData.scores, userText];
-      
+
       if (step === 1) {
         setUserData({ ...userData, scores, assessmentStep: 2 });
         addMessage(`Thanks. Scenario: A deployment breaks production due to an unhandled edge case. How effectively can you isolate and debug the root cause? (1-5)`, 'bot');
@@ -121,7 +121,7 @@ const LndCoach = () => {
         processMicroCoaching();
       }, 1500);
     }
-    
+
     // Catch-all generic redirect
     else if (stage === 7 || stage === 5) {
       addMessage(`Let's keep your learning momentum going — shall we continue checking the dashboard? 😊`, 'bot');
