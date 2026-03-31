@@ -1,4 +1,4 @@
-const API_BASE_URL = '/api';
+const API_BASE_URL = 'https://hexapath-ai.onrender.com/api';
 
 export const fetchResource = async (endpoint, options = {}) => {
   const token = localStorage.getItem('token');
